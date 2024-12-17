@@ -37,3 +37,35 @@
 //         .catch(err => console.error('Erreur lors de la suppression :', err));            
             // Pratique lorsque vous travaillez avec des identifiants uniques
         
+            const express = require('express');
+            const mongoose = require('mongoose');
+            const db = require('./db')
+            const app = express();
+            const port = 3000;
+            
+            
+            
+            
+            
+            
+            
+            
+            app.get('/' , async (req,res) => {
+            await db.connectDB();
+                // Ajouter un utilisateur :
+            db.User.findByIdAndDelete('67617876355cc099fd98916b')
+            .then(user => console.log('Document supprimé par ID :', user))
+                    .catch(err => console.error('Erreur lors de la suppression :', err));  
+            
+            res.send('Serveur Express connecté à mongoDB')
+                });
+            
+            
+            
+            
+            
+            
+            
+            app.listen(port, () => {
+                console.log(`Serveur en écoute sur le port ${port}`);
+            });
